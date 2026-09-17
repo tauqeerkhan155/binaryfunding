@@ -3,47 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Trading Funding Platform</title>
+    <title>Nexus Funding | Pro Trading Platform</title>
     <style>
         :root {
-            --primary: #0f172a;
+            --bg-deep: #090d16;
+            --bg-card: #111827;
             --accent: #3b82f6;
             --accent-hover: #2563eb;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --white: #ffffff;
-            --border: #e2e8f0;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #1f2937;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-deep);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
-        /* Navbar */
+        /* --- HEADER & NAVBAR --- */
+        header {
+            background-color: rgba(9, 13, 22, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
         .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--primary);
-            padding: 20px 40px;
-            color: var(--white);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
             letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .logo span {
             color: var(--accent);
         }
 
@@ -55,18 +68,18 @@
         }
 
         .nav-links a {
-            color: var(--white);
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.2s ease;
         }
 
         .nav-links a:hover {
             color: var(--accent);
         }
 
-        /* Dropdown Menu */
+        /* Dropdown Styling */
         .dropdown {
             position: relative;
         }
@@ -76,21 +89,22 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: var(--white);
-            min-width: 220px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            border-radius: 6px;
+            background-color: var(--bg-card);
+            min-width: 200px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-radius: 8px;
             overflow: hidden;
-            z-index: 10;
+            z-index: 100;
             border: 1px solid var(--border);
             margin-top: 10px;
         }
 
         .dropdown-content a {
-            color: var(--text-dark);
+            color: var(--text-muted);
             padding: 12px 16px;
             display: block;
             border-bottom: 1px solid var(--border);
+            font-size: 14px;
         }
 
         .dropdown-content a:last-child {
@@ -98,7 +112,7 @@
         }
 
         .dropdown-content a:hover {
-            background-color: var(--bg-light);
+            background-color: rgba(59, 130, 246, 0.1);
             color: var(--accent);
         }
 
@@ -106,61 +120,62 @@
             display: block;
         }
 
-        /* Hero Section */
+        /* --- HERO SECTION --- */
         .hero {
             text-align: center;
-            padding: 80px 20px;
-            max-width: 900px;
+            padding: 100px 20px 60px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 42px;
+            font-size: 48px;
+            font-weight: 800;
             margin-bottom: 20px;
-            color: var(--primary);
+            background: linear-gradient(to right, #ffffff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
             font-size: 18px;
-            color: var(--text-light);
+            color: var(--text-muted);
             margin-bottom: 40px;
         }
 
-        /* Market Cards Grid */
-        .markets-grid {
+        /* --- MARKETS SECTION --- */
+        .markets-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 20px 80px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px 80px 20px;
         }
 
         .market-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            background-color: var(--bg-card);
             border: 1px solid var(--border);
-            text-align: left;
-            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 16px;
+            padding: 40px 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .market-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
         }
 
         .market-card h2 {
             font-size: 24px;
             margin-bottom: 15px;
-            color: var(--primary);
+            color: var(--text-main);
         }
 
         .market-card p {
-            color: var(--text-light);
-            margin-bottom: 25px;
+            color: var(--text-muted);
             font-size: 15px;
+            margin-bottom: 25px;
         }
 
         .features-list {
@@ -170,11 +185,11 @@
 
         .features-list li {
             font-size: 14px;
-            color: var(--text-dark);
-            margin-bottom: 10px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .features-list li::before {
@@ -187,84 +202,228 @@
             display: block;
             width: 100%;
             background-color: var(--accent);
-            color: var(--white);
+            color: #fff;
             text-align: center;
             padding: 14px;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s ease;
         }
 
         .btn:hover {
             background-color: var(--accent-hover);
         }
+
+        /* --- TARGET SECTIONS FOR NAVIGATION --- */
+        .target-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .target-section h2 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 60px 20px 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            color: var(--text-main);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* --- RESPONSIVE DESIGN FOR MOBILE --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">FundingPro</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            
-            <!-- Binary Trading Menu -->
-            <li class="dropdown">
-                <a href="#">Binary Trading ▾</a>
-                <div class="dropdown-content">
-                    <a href="#binary-evaluation">Binary Evaluation</a>
-                    <a href="#binary-funded">Binary Funded Accounts</a>
-                </div>
-            </li>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">Nexus<span>Funding</span></a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                
+                <!-- Binary Trading Menu -->
+                <li class="dropdown">
+                    <a href="#binary-section">Binary Trading ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#binary-section">Binary Evaluation</a>
+                        <a href="#binary-section">Binary Funded Accounts</a>
+                    </div>
+                </li>
 
-            <!-- Forex Funding Menu -->
-            <li class="dropdown">
-                <a href="#">Forex Funding ▾</a>
-                <div class="dropdown-content">
-                    <a href="#forex-evaluation">Evaluation Accounts</a>
-                    <a href="#forex-instant">Instant Funded Accounts</a>
-                    <a href="#forex-scaling">Scaling Plan & Rules</a>
-                </div>
-            </li>
+                <!-- Forex Funding Menu -->
+                <li class="dropdown">
+                    <a href="#forex-section">Forex Funding ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#forex-section">Evaluation Accounts</a>
+                        <a href="#forex-section">Instant Funded Accounts</a>
+                        <a href="#forex-section">Scaling Plan</a>
+                    </div>
+                </li>
 
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#support">Support</a></li>
-        </ul>
-    </nav>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Choose Your Ultimate Funding Program</h1>
-        <p>Get capital and trade your preferred markets with professional evaluation and instant funding choices.</p>
+        <h1>Professional Capital Funding</h1>
+        <p>Unlock your trading potential with institutional backing. Choose between dedicated binary or comprehensive forex funding accounts.</p>
     </section>
 
-    <!-- Markets Cards Section -->
-    <div class="markets-grid">
+    <!-- Markets Selection Cards -->
+    <div class="markets-container">
         <!-- Binary Trading Card -->
         <div class="market-card">
             <h2>Binary Trading</h2>
-            <p>Access specialized funding programs tailored explicitly for binary options traders.</p>
+            <p>Specialized programs configured explicitly for precision binary options execution and rapid growth.</p>
             <ul class="features-list">
-                <li>Flexible Profit Targets</li>
-                <li>Fast Payout Processing</li>
-                <li>Dedicated Binary Support</li>
+                <li>Tailored Profit Targets</li>
+                <li>Instant Payout Processing</li>
+                <li>Advanced Risk Parameters</li>
             </ul>
-            <a href="#binary-section" class="btn">Explore Binary Programs</a>
+            <a href="#binary-section" class="btn">View Binary Accounts</a>
         </div>
 
         <!-- Forex Funding Card -->
         <div class="market-card">
             <h2>Forex Funding</h2>
-            <p>Trade major currency pairs and commodities with high-tier institutional capital backing.</p>
+            <p>Trade major currency pairs and global commodities with deep liquidity and high capital backing.</p>
             <ul class="features-list">
-                <li>Evaluation & Instant Options</li>
+                <li>Evaluation & Instant Tiers</li>
                 <li>Raw Spreads & Low Commission</li>
-                <li>Up to 1:100 Leverage Scaling</li>
+                <li>Leverage up to 1:100</li>
             </ul>
-            <a href="#forex-section" class="btn">Explore Forex Programs</a>
+            <a href="#forex-section" class="btn">View Forex Accounts</a>
         </div>
     </div>
+
+    <!-- Target Sections to Handle Navigation Links -->
+    <div id="binary-section" class="target-section">
+        <h2>Binary Trading Funding Programs</h2>
+        <p>Explore evaluation structures, performance benchmarks, and account specifications designed for binary traders.</p>
+    </div>
+
+    <div id="forex-section" class="target-section">
+        <h2>Forex Funding Programs</h2>
+        <p>Choose from standard two-step evaluations or instant-funded live accounts built for professional forex trading.</p>
+    </div>
+
+    <!-- Professional Footer with About, Contact, and Details -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Nexus Funding</h3>
+                <p>Empowering global traders with elite funding options, cutting-edge analytics, and reliable support.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#binary-section">Binary Programs</a></li>
+                    <li><a href="#forex-section">Forex Programs</a></li>
+                    <li><a href="#">Scaling Rules</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Email: support@nexusfunding.com</p>
+                <p>Address: Financial District, Suite 402</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nexus Funding. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
